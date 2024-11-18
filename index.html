@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toolia - Web for Everything</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Import fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+.hero-section {
+            background: linear-gradient(135deg, #4f46e5, #2563eb);
+            color: white;
+            padding: 6rem 1rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border-radius: 9999px;
+            border: none;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool-icon {
+            font-size: 2.5rem;
+            color: #4f46e5;
+            margin-bottom: 1rem;
+        }
+
+        .tool-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .tool-description {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: #4f46e5;
+            color: white;
+            text-decoration: none;
+            border-radius: 9999px;
+            font-weight: 500;
+            transition: background 0.2s ease;
+        }
+
+        .cta-button:hover {
+            background: #4338ca;
+        }
+
+        .features-section {
+            background: #f3f4f6;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #1f2937;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: #4f46e5;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .feature-description {
+            color: #6b7280;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header styles */
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #1f2937;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: #2563eb;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #1f2937;
+        }
+
+        /* Main content area */
+        .main-container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            width: 100%;
+        }
+
+        /* Footer styles */
+        .footer {
+            background: #1f2937;
+            color: white;
+            padding: 4rem 1rem 2rem;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.2s ease;
+        }
+
+        .social-link:hover {
+            color: #60a5fa;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-link {
+            color: #e5e7eb;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Utility classes */
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="/" class="logo">
+                <img src="/api/placeholder/40/40" alt="Logo">
+                Brand Name
+            </a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-menu">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/about" class="nav-link">About</a>
+                <a href="/services" class="nav-link">Services</a>
+                <a href="/portfolio" class="nav-link">Portfolio</a>
+                <a href="/contact" class="nav-link">Contact</a>
+                <a href="/get-started" class="btn btn-primary">Get Started</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-container">
+        <!-- Your content goes here -->
+
+
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Discover Tools to Enhance Your Development Journey</h1>
+            <p class="hero-subtitle">Access a curated collection of tools and resources to boost your productivity and skills</p>
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Search for tools, resources, or topics...">
+            </div>
+            <a href="#tools" class="cta-button">Explore Tools</a>
+        </div>
+    </section>
+
+    <!-- Tools Grid -->
+    <section id="tools" class="tools-grid">
+        <!-- Code Editor Tool -->
+        <div class="tool-card">
+            <i class="fas fa-code tool-icon"></i>
+            <h3 class="tool-title">Online Code Editor</h3>
+            <p class="tool-description">Write, test, and debug your code in real-time with our powerful online editor. Supports multiple languages.</p>
+            <a href="/code-editor" class="cta-button">Start Coding</a>
+        </div>
+
+        <!-- Design Tool -->
+        <div class="tool-card">
+            <i class="fas fa-paint-brush tool-icon"></i>
+            <h3 class="tool-title">UI Component Builder</h3>
+            <p class="tool-description">Create beautiful UI components with our visual builder. Export to HTML, CSS, or React.</p>
+            <a href="/ui-builder" class="cta-button">Design Now</a>
+        </div>
+
+        <!-- API Tester -->
+        <div class="tool-card">
+            <i class="fas fa-server tool-icon"></i>
+            <h3 class="tool-title">API Tester</h3>
+            <p class="tool-description">Test your APIs with ease. Support for REST, GraphQL, and WebSocket endpoints.</p>
+            <a href="/api-tester" class="cta-button">Test APIs</a>
+        </div>
+
+        <!-- Resource Library -->
+        <div class="tool-card">
+            <i class="fas fa-book tool-icon"></i>
+            <h3 class="tool-title">Resource Library</h3>
+            <p class="tool-description">Access a vast collection of tutorials, documentation, and learning resources.</p>
+            <a href="/resources" class="cta-button">Browse Library</a>
+        </div>
+
+        <!-- Productivity Tools -->
+        <div class="tool-card">
+            <i class="fas fa-tasks tool-icon"></i>
+            <h3 class="tool-title">Task Manager</h3>
+            <p class="tool-description">Stay organized with our powerful task management and time tracking tools.</p>
+            <a href="/productivity" class="cta-button">Get Organized</a>
+        </div>
+
+        <!-- Community Hub -->
+        <div class="tool-card">
+            <i class="fas fa-users tool-icon"></i>
+            <h3 class="tool-title">Community Hub</h3>
+            <p class="tool-description">Connect with other developers, share knowledge, and collaborate on projects.</p>
+            <a href="/community" class="cta-button">Join Now</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <h2 class="section-title">Why Choose Our Tools?</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="fas fa-bolt feature-icon"></i>
+                <h3 class="feature-title">Lightning Fast</h3>
+                <p class="feature-description">All tools are optimized for performance and quick loading times.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-lock feature-icon"></i>
+                <h3 class="feature-title">Secure</h3>
+                <p class="feature-description">Your data is protected with enterprise-grade security measures.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-sync feature-icon"></i>
+                <h3 class="feature-title">Always Updated</h3>
+                <p class="feature-description">Regular updates with new features and improvements.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-headset feature-icon"></i>
+                <h3 class="feature-title">24/7 Support</h3>
+                <p class="feature-description">Get help whenever you need it from our dedicated support team.</p>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- About Section -->
+            <div class="footer-section">
+                <h3 class="footer-title">About Us</h3>
+                <p>We are a passionate team dedicated to creating amazing digital experiences. Our mission is to help businesses grow through innovative solutions.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="/about" class="footer-link">About Us</a></li>
+                    <li><a href="/services" class="footer-link">Services</a></li>
+                    <li><a href="/portfolio" class="footer-link">Portfolio</a></li>
+                    <li><a href="/blog" class="footer-link">Blog</a></li>
+                    <li><a href="/careers" class="footer-link">Careers</a></li>
+                </ul>
+            </div>
+
+            <!-- Services -->
+            <div class="footer-section">
+                <h3 class="footer-title">Services</h3>
+                <ul class="footer-links">
+                    <li><a href="/web-development" class="footer-link">Web Development</a></li>
+                    <li><a href="/app-development" class="footer-link">App Development</a></li>
+                    <li><a href="/ui-design" class="footer-link">UI/UX Design</a></li>
+                    <li><a href="/consulting" class="footer-link">Consulting</a></li>
+                    <li><a href="/marketing" class="footer-link">Digital Marketing</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="footer-section">
+                <h3 class="footer-title">Contact Us</h3>
+                <ul class="footer-links">
+                    <li class="footer-link">123 Business Street</li>
+                    <li class="footer-link">City, State 12345</li>
+                    <li class="footer-link">Phone: (123) 456-7890</li>
+                    <li class="footer-link">Email: info@example.com</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Your Brand Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.nav-menu');
+            menu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
